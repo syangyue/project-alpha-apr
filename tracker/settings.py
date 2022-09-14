@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'markdownify.apps.MarkdownifyConfig',
     'tasks.apps.TasksConfig',
     'projects.apps.ProjectsConfig',
     'accounts.apps.AccountsConfig',
@@ -105,6 +106,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
+MARKDOWNIFY = {
+    "default": {
+        "WHITELIST_TAGS": ["p"],
+        "BLEACH": False
+    },
+    "others": {
+        ...
+    }
+}
 
 LANGUAGE_CODE = 'en-us'
 

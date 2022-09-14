@@ -2,8 +2,9 @@
 {% block content %}
     <div>
         {% for item in project_list.all %}
-        <h1>{{ item.name }}</h1>
-        <p>{{ project.description }}</p>
+            <h1>{{ item.name }}</h1>
+            {% load markdownify %}
+            {{ project.description|markdownify }}
         {% endfor %}
         <h2>Tasks</h2>
         <p>
