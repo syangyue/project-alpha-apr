@@ -2,28 +2,32 @@
 {% block content %}
     <div>
         <h1>My Projects</h1>
-        <p>
-            <a href="{% url 'create_project' %}">Create a new project</a>
-        </p>
-                {% if not project_list %}
-                    <p>You are not assigned to any projects</p>
-                {% else %}
-                    <table>
-                        {% for item in project_list %}
-                            <thead>
-                                <th>Name</th>
-                                <th>Number of tasks</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <a href="{% url 'show_project' item.id %}">{{ item.name }}</a>
-                                    </td>
-                                    <td>{{ item.tasks.all|length }}</td>
-                                </tr>
-                            </tbody>
-                        {% endfor %}
-                    </table>
-                {% endif %}
-            </div>
-        {% endblock content %}
+        {% if user.is_authenticated %}
+            <p>
+                <a href="{% url 'create_project' %}">Create a new project</a>
+            </p>
+            <table>
+                {% for item in project_list %}
+                    <thead>
+                        <th>Name</th>
+                        <th>Number of tasks</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="{% url 'show_project' item.id %}">{{ item.name }}</a>
+                            </td>
+                            <td>{{ item.tasks.all|length }}</td>
+                        </tr>
+                    </tbody>
+                {% empty %}
+                    <tr>
+                        <td>You are not assigned to any projects</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>Please login</p>
+        {% endif %}
+    </div>
+{% endblock content %}

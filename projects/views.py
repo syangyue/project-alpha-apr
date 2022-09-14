@@ -22,9 +22,6 @@ class ProjectDetailView(LoginRequiredMixin, DetailView):
     model = Project
     template_name = "projects/detail.html"
 
-    def get_queryset(self):
-        return Project.objects.filter(members=self.request.user)
-
 
 class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
