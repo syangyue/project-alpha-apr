@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-
     <div>
-        <h1>{{ item.name }}</h1>
+        <h1>{{ project.name }}</h1>
         {% load markdownify %}
         {{ project.description|markdownify }}
         <h2>Tasks</h2>
@@ -18,7 +17,7 @@
                 <th>Is completed</th>
             </thead>
             <tbody>
-                {% for task in project.tasks.all %}
+            {% for task in project.tasks.all %}
                     <tr>
                         <td>{{ task.name }}</td>
                         <td>{{ task.assignee }}</td>
@@ -26,9 +25,9 @@
                         <td>{{ task.due_date }}</td>
                         <td>{{ task.is_completed }}</td>
                     </tr>
-                {% empty %}
+            {% empty %}
                     <p>This project has no tasks</p>
-                {% endfor %}
+            {% endfor %}
             </tbody>
         </table>
     </div>
