@@ -2,25 +2,28 @@
 {% block content %}
     <div>
         <h1>My Projects</h1>
-        {% if not project_list %}
-            <p>You are not assigned to any projects</p>
-        {% else %}
-            <table>
-                {% for item in project_list %}
-                    <thead>
-                        <th>Name</th>
-                        <th>Number of tasks</th>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <a href="{% url 'show_project' item.id %}">{{ item.name }}</a>
-                            </td>
-                            <td>{{ item.tasks.all|length }}</td>
-                        </tr>
-                    </tbody>
-                {% endfor %}
-            </table>
-        {% endif %}
-    </div>
-{% endblock content %}
+        <p>
+            <a href="{% url 'create_project' %}">Create a new project</a>
+        </p>
+                {% if not project_list %}
+                    <p>You are not assigned to any projects</p>
+                {% else %}
+                    <table>
+                        {% for item in project_list %}
+                            <thead>
+                                <th>Name</th>
+                                <th>Number of tasks</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'show_project' item.id %}">{{ item.name }}</a>
+                                    </td>
+                                    <td>{{ item.tasks.all|length }}</td>
+                                </tr>
+                            </tbody>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            </div>
+        {% endblock content %}
