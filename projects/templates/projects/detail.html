@@ -13,21 +13,25 @@
                 <th>Name</th>
                 <th>Assignee</th>
                 <th>Start date</th>
-                <th>Due date</th>
+                <th>End date</th>
                 <th>Is completed</th>
             </thead>
             <tbody>
-            {% for task in project.tasks.all %}
+                {% for task in project.tasks.all %}
                     <tr>
                         <td>{{ task.name }}</td>
                         <td>{{ task.assignee }}</td>
                         <td>{{ task.start_date }}</td>
                         <td>{{ task.due_date }}</td>
-                        <td>{{ task.is_completed }}</td>
+                        {% if item.is_completed %}
+                            <td>yes</td>
+                        {% else %}
+                            <td>no</td>
+                        {% endif %}
                     </tr>
-            {% empty %}
+                {% empty %}
                     <p>This project has no tasks</p>
-            {% endfor %}
+                {% endfor %}
             </tbody>
         </table>
     </div>
