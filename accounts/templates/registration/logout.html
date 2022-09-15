@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-        <div>
-            <h1>Logout</h1>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button>Logout</button>
-            </form>
-        </div>
+    <div>
+        <h1>Logout</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button>Logout</button>
+        </form>
+    </div>
 {% endblock content %}
